@@ -1,0 +1,19 @@
+package main
+
+import (
+  "context"
+  "github.com/aws/aws-lambda-go/lambda"
+)
+
+type %sRequest struct {
+  Input string
+}
+
+func HandleRequest(ctx context.Context, request %sRequest) (string, error) {
+  return "This is the lambda %s! request.Input=" + request.Input, nil
+}
+
+func main() {
+  lambda.Start(HandleRequest)
+}
+

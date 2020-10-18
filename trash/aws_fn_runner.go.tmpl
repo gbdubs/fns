@@ -1,0 +1,19 @@
+package main
+
+import (
+  "context"
+  "{{.FullPackageName}}"
+  "github.com/aws/aws-lambda-go/lambda"
+  "github.com/gbdubs/golog"
+)
+
+func HandleRequest(ctx context.Context, request {{.SimplePackageName}}.{{MessagePrefix}}Request) (string, error) {
+	resp := {{.SimplePackageName}}.Execute(ctx, golog.New(), request)
+	data, err := json.MarshalIndent(resp, "", " ")
+	return string(data), err
+}
+
+func main() {
+  lambda.Start(HandleRequest)
+}
+

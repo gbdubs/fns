@@ -1,0 +1,22 @@
+package {{.SimplePackageName}}
+
+import (
+  "context"
+  "github.com/gbdubs/golog"
+)
+
+type {{.MessagePrefix}}Request struct {
+  Input string
+}
+
+type {{.MessagePrefix}}Response struct {
+  Output string
+}
+
+func Execute(ctx context.Context, log *golog.Golog, request {{.MessagePrefix}}Request) {{.MessagePrefix}}Response {
+  	log.Info("Successfully Entered Function!")
+  	log.BreakPoint("I wonder if this will work...", request)  
+  	return {{.MessagePrefix}}Response{
+		Output: "This is a function created with github.com/gbdubs/fns. I'ts called %s! request.Input=" + request.Input,
+	}
+}
